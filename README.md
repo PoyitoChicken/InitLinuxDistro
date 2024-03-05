@@ -32,11 +32,11 @@ git clone https://github.com/PoyitoChicken/initFedoraSec.git installers
 ```
 cd installers
 ```
-3. Make it an executable file (installer_4<distro>.sh)
+3. Make it an executable file installer_4(your package manager).sh
 ```
 chmod +x installer.sh
 ```
-4. Run the installer (installer_4<distro>.sh)
+4. Run the installer installer_4(your package manager).sh
 ```
 ./installer
 ```
