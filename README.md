@@ -5,24 +5,24 @@ Install DB and CyberSec dependencies for FedoraSec
 0. Download git (depends on your package manager)
 * Fedora
 ````
-sudo dnf update
+sudo dnf update -y
 ````
 ````
-sudo dnf install git
+sudo dnf install -y git
 ````
 * Debian, Mint, Pop
 ````
-sudo apt update
+sudo apt update -y
 ````
 ````
-sudo apt install git
+sudo apt install -y git
 ````
 * Arch
 ````
-sudo pacman -Sy
+sudo pacman -Sy --noconfirm
 ````
 ````
-sudo pacman -S git
+sudo pacman -S git --noconfirm
 ````
 1. Clone the repository  
 ```
