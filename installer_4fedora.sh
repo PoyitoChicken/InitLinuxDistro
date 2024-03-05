@@ -2,7 +2,7 @@ echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
 
 echo "#####****     Installing Programming Dependencies...      ****####"
-sudo dnf install -y mariadb dbeaver-code- vscode postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet-sdk-5.0 java-latest-openjdk-devel
+sudo dnf install -y mysql-server mariadb-server dbeaver-code- vscode postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet-sdk-5.0 java-latest-openjdk-devel
 
 echo "Making MariaDB run at start"
 sudo systemctl enable mariadb
