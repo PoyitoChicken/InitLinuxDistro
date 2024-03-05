@@ -1,0 +1,27 @@
+####    PROGRAMMING     ####   
+mysql
+dbeaver
+vscode
+postgre
+c++/c
+node
+.net sdk
+python
+
+####    CYBERSECURITY       ####
+nmap
+gobuster
+metasploit
+wireshark
+Burp
+SSer
+SQLMap
+OpenVAS/Nessus
+John The Ripper/Hashcat
+openssl
+OWASP ZAP
+DLLInjector
+Libformatstr
+One Gadget
+Qira
+Tcpdump
