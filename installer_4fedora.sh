@@ -1,5 +1,5 @@
 echo "#####****     Updating dependencies       ****####"
-sudo dnf update
+sudo dnf update -y
 
 echo "#####****     Installing Programming Dependencies...      ****####"
 sudo dnf install -y mariadb dbeaver-code- vscode postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet-sdk-5.0 java-latest-openjdk-devel
