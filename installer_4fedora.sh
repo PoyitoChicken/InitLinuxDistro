@@ -2,10 +2,11 @@ echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
 
 echo "#####****     Installing Programming Dependencies...      ****####"
-sudo dnf install -y mysql mariadb dbeaver-code- vscode postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet-sdk-5.0 java-latest-openjdk-devel
+sudo dnf install -y community-mysql-server dbeaver-code- vscode postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet-sdk-5.0 java-latest-openjdk-devel
 
 echo "Making MariaDB run at start"
-sudo systemctl enable mariadb
+sudo systemctl start mysqld
+sudo systemctl enable mysqld
 echo "alias connmaria = 'sudo mysql -u root -p'" >> ~/.bashrc
 
 echo "Making shutdown shortcut"
