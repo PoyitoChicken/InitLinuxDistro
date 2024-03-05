@@ -16,31 +16,34 @@ SonarQube
 ####    CYBERSECURITY       ####
 Pentesting/CTF
     Webapp testing:
-        Burp    #Used for webapps with many features, intercepts HTTP via proxy (automatic)
-        Dirbuster   #Detects extra subpages in a webapp
-        XSSer   #Useful for detection, exploiting and reporting XSS vulns
-        SQLMap  #SQL Injection and DB exploitation tool
+        Burp    #Used for webapps with many features, intercepts HTTP via proxy (automatic) Check
+        Dirbuster   #Detects extra subpages in a webapp Check
+        XSSer   #Useful for detection, exploiting and reporting XSS vulns Check
+        SQLMap  #SQL Injection and DB exploitation tool Check
     Exploitation Frameworks:
-        Metasploit  #Exploit devices and injects payloads on them
+        Metasploit  #Exploit devices and injects payloads on them DOWNLOADER
     Network Scanning Analysis:
-        NMap    #Provides tools to perform network scans and device scans
-        Wireshark   #Analyzes network traffic and pcap files
+        NMap    #Provides tools to perform network scans and device scans Check
+        Wireshark   #Analyzes network traffic and pcap files Already installed in fedora security lab 
     Vulnerability Scanning:
-        OpenVAS/Nessus  #Vuln scanner used for identifying issues in networks and systems (nessus is proprietary)
+        OpenVAS/Nessus  #Vuln scanner used for identifying issues in networks and systems (nessus is proprietary) DOWNLOADER
     Binary Exploitation:
-        One Gadget  #Tool to find the one gadget
-        DLLInjector #Injects DLLs in processes
-        Libformatstr    #Simply format string exploitation
+        One Gadget  #Tool to find the one gadget Check
+        DLLInjector #Injects DLLs in processes Check
+        Libformatstr    #Simply format string exploitation Check
     
 Password Cracking
-    John The Ripper    #Password cracking tool
-    Hashcat     # Advanced password recovery utility
+    John The Ripper    #Password cracking tool Check
+    Hashcat     # Advanced password recovery utility 
     
 Networks
-    Nmap    #Provides tools to perform network scans and device scans.
-    Netcat      #Reads/Writes data across network connections.
-    Tcpdump     #CLI packet analyzer.
-    openssl     #A kit for the TLS and SSL protocols manipulation.
-    OWASP ZAP   #Open-Source webapp security scanner.
-    Qira    #QEMU Interactive Runtime Analyzer.
+    Nmap    #Provides tools to perform network scans and device scans. Check
+    Netcat      #Reads/Writes data across network connections. Check
+    Tcpdump     #CLI packet analyzer. Check
+    openssl     #A kit for the TLS and SSL protocols manipulation. Check
+    OWASP ZAP   #Open-Source webapp security scanner. DOWNLOADER
+    Qira    #QEMU Interactive Runtime Analyzer. Check
 
+
+####    INSTALL BURP   ####
+https://portswigger.net/burp/communitydownload
