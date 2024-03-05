@@ -1,5 +1,5 @@
 ####    PROGRAMMING     ####   
-mysql
+mariadb
 dbeaver
 vscode
 postgre
@@ -7,21 +7,40 @@ c++/c
 node
 .net sdk
 python
+git
+npm
+pip
+Docker/Kubernetes
+SonarQube
 
 ####    CYBERSECURITY       ####
-nmap
-gobuster
-metasploit
-wireshark
-Burp
-SSer
-SQLMap
-OpenVAS/Nessus
-John The Ripper/Hashcat
-openssl
-OWASP ZAP
-DLLInjector
-Libformatstr
-One Gadget
-Qira
-Tcpdump
+Pentesting/CTF
+    Webapp testing:
+        Burp    #Used for webapps with many features, intercepts HTTP via proxy (automatic)
+        Dirbuster   #Detects extra subpages in a webapp
+        XSSer   #Useful for detection, exploiting and reporting XSS vulns
+        SQLMap  #SQL Injection and DB exploitation tool
+    Exploitation Frameworks:
+        Metasploit  #Exploit devices and injects payloads on them
+    Network Scanning Analysis:
+        NMap    #Provides tools to perform network scans and device scans
+        Wireshark   #Analyzes network traffic and pcap files
+    Vulnerability Scanning:
+        OpenVAS/Nessus  #Vuln scanner used for identifying issues in networks and systems (nessus is proprietary)
+    Binary Exploitation:
+        One Gadget  #Tool to find the one gadget
+        DLLInjector #Injects DLLs in processes
+        Libformatstr    #Simply format string exploitation
+    
+Password Cracking
+    John The Ripper    #Password cracking tool
+    Hashcat     # Advanced password recovery utility
+    
+Networks
+    Nmap    #Provides tools to perform network scans and device scans.
+    Netcat      #Reads/Writes data across network connections.
+    Tcpdump     #CLI packet analyzer.
+    openssl     #A kit for the TLS and SSL protocols manipulation.
+    OWASP ZAP   #Open-Source webapp security scanner.
+    Qira    #QEMU Interactive Runtime Analyzer.
+
