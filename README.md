@@ -3,8 +3,9 @@ Install DB and CyberSec dependencies for FedoraSec
 
 ## Process
 1. Clone the repository  
+```
 git clone https://github.com/PoyitoChicken/initFedoraSec.git installers
-
+```
 2. Navigate to the folder
 ```html
 <button id="copyButton">Copy</button>
