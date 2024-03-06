@@ -71,6 +71,13 @@ else
     echo "Successfully added to list"
 fi
 #######
+###### METASPLOIT ######
+wget http://downloads.metasploit.com/data/releases/framework-latest.tar.bz2
+tar -jxf framework-latest.tar.bz2
+sudo mkdir -p /opt/metasploit4
+sudo cp -a msf/ /opt/metasploit4/msf
+sudo chown root:root -R /opt/metasploit4/msf
+sudo ln -sf /opt/metasploit4/msf/msf* /usr/local/bin/
 : ' 
     ADD INSTALL METASPLOIT 
     https://fedoraproject.org/wiki/Metasploit
@@ -87,9 +94,10 @@ fi
 ###### OPENVAS ######
 
 echo "Installing OpenVAS"
-sudo dnf install -y gnupg cmake pkg-config libglib2.0-dev libgpgme-dev libgnutls28-dev uuid-dev libssh-gcrypt-dev libldap2-dev doxygen graphviz libxml2-dev libpcap-dev bison libksba-dev libsnmp-dev libgcrypt20-dev libradcli-dev libhiredis-dev libsqlite3-dev libical-dev postgresql postgresql-contrib postgresql-server-dev-all redis-server sqlite3 xmltoman gcc-mingw-w64 heimdal-dev
-sudo dnf install -y gvm-tools
-echo "OpenVAS installed successfully, please set it up manually\n\n\n"
+sudo dnf install -y https://updates.atomicorp.com/channels/atomic/fedora/$(rpm -E %fedora)/x86_64/RPMS/atomic-release-1.0-21.fc$(rpm -E %fedora).art.noarch.rpm
+sudo dnf install -y openvas
+sudo openvas-setup
+alias openvas-start='sudo systemctl start openvas-scanner && sudo systemctl start openvas-manager && sudo systemctl start openvas-gsa'
 
 #######
 : ' 
