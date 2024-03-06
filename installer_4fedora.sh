@@ -1,55 +1,73 @@
-echo "#####****     Updating dependencies       ****####"
-sudo dnf update -y
-
 echo "#####****     Installing Programming Dependencies...      ****####"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-
+touch ~/Downloads/failed_installs.txt
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/F-35-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
-sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
+# sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
+####       MYSQL NEEDS TO BE ENABLED SO NOT CALLED IN FUNCTION
+if sudo dnf install -y community-mysql-server; then
+    echo "mysql installed correctly"
+    sudo systemctl start mysqld
+    sudo systemctl enable mysqld
+    echo "mysql server active"
+    echo "alias conmaria='sudo mysql -u root -p'" >> ~/.bashrc
+else 
+    echo "Installation failed. Adding to list..."
+    echo "mysql" >> ~/Downloads/failed_installs.txt
+    echo "" >> ~/Downloads/failed_installs.txt
+    echo "Successfully added to list"
+fi
 
+install_packages(){
+    local package_name=$1
 
-echo "Making MariaDB run at start"
-sudo systemctl start mysqld
-sudo systemctl enable mysqld
-echo "alias connmaria = 'sudo mysql -u root -p'" >> ~/.bashrc
+    if sudo dnf install -y "$package_name"; then
+        echo "$package_name installed correctly!"
+    else 
+        echo "Installation failed. Adding to list..."
+        echo "$package_name" >> ~/Downloads/failed_installs.txt
+        echo "" >> ~/Downloads/failed_installs.txt
+        echo "Successfully added to list"
+    fi
+}
+install_packages() "community_mysql_server"
+install_packages() "nmap"
+###### install_packages() "dbeaver" DOESNT WORK
+install_packages() "code"
+###### install_packages() "postgresql" DOESNT WORK
+install_packages() "gcc"
+install_packages() "gcc-c++"
+install_packages() "nodejs"
+install_packages() "npm"
+install_packages() "pip"
+install_packages() "python3"
+install_packages() "docker"
+install_packages() "kubernetes-cli"
+install_packages() "dotnet"
+install_packages() "java-latest-openjdk-devel"
+install_packages() "postgresql11-server"
+install_packages() "postgresql11"
+install_packages() "heimdal-devel"
 
 echo "Making shutdown shortcut"
-echo "alias sdp = 'sudo shutdown -h now'" >> ~/.bashrc
-
+echo "alias sdp='sudo shutdown -h now'" >> ~/.bashrc
+source ~/.bashrc
 cd ~/Downloads
 echo "#####****     CYBERSECURITY SUITE      ****####"
 echo "#Installing Pentesting/CTF tools..."
 
 ###### NMAP ######
-: '
-echo "Nmap"
-curl https://nmap.org/dist/nmap-7.94-1.x86_64.rpm 
-if sudo dnf install -y nmap ~/Downloads/nmap-7.94-1.x86_64.rpm; then
-    echo "Installation successful!"
-else 
-    echo "Installation failed. Adding to list..."
-    echo "~/Downloads/nmap-7.94-1.x86_64.rpm" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
-'
+echo "\n\nInstalling nmap..."
+install_packages() "nmap"
 
 ###### GOBUSTER ######
 
 echo "Installing gobuster..."
-
-if sudo dnf install -y gobuster; then
-    echo "Installation successful!"
-else
-    echo "Installation failed. Adding to list..."
-    echo "gobuster" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
+install_packages() "gobuster"
 ###### XSSER ######
 
 
@@ -113,7 +131,11 @@ alias openvas-start='sudo systemctl start openvas-scanner && sudo systemctl star
 cd ~/Downloads
 echo "Installing DLLInjector..."
 
-sudo dnf install -y git gcc gcc-c++ make cmake
+install_packages() "gcc"
+install_packages() "gcc-c++"
+install_packages() "make"
+install_packages() "cmake"
+
 git clone https://github.com/OpenSecurityResearch/dllinjector.git
 cd dllinjector
 mkdir build
@@ -138,51 +160,22 @@ fi
 
 ###### JOHN THE RIPPER ######
 echo "Installing John the Ripper"
-if sudo dnf install -y john; then 
-    echo "Installed successfully!"
-else 
-    echo "Installation failed. Adding to list..."
-    echo "john" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
+install_packages() "john"
 ###### NETCAT ######
 
 echo "Installing netcat..."
-
-if sudo dnf install -y nmap-ncat; then
-    echo "ncat installed successfully!"
-else
-    echo "Installation failed. Adding to list..."
-    echo "netcat" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
+install_packages() "nmcap-ncat"
 
 ###### TCPDUMP ######
 
 echo "Installing tcpdump..."
-
-if sudo dnf install -y tcpdump; then
-    echo "tcpdump installed successfully!"
-else 
-    echo "Installation failed. Adding to list..."
-    echo "tcpdump" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
+install_packages() "tcpdump"
 
 ###### OPENSSL ######
 
 echo "Installing openssl..."
-if sudo dnf install -y openssl; then
-    echo "openssl installed successfully!"
-else 
-    echo "Installation failed. Adding to list..."
-    echo "openssl" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~Downloads/failed_installs.txt
-    echo "Successfully added to list"
-fi
+install_packages() "openssl"
+
 
 ###### QWASP ZAP ######
 
