@@ -1,4 +1,5 @@
 echo "#####****     Installing Programming Dependencies...      ****####"
+touch "$HOME/Downloads/failed_installs.txt"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
@@ -8,8 +9,6 @@ echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
 # sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
 ####       MYSQL NEEDS TO BE ENABLED SO NOT CALLED IN FUNCTION
-cd ~/Downloads
-touch ~/Downloads/failed_installs.txt
 if sudo dnf install -y community-mysql-server; then
     echo "mysql installed correctly"
     sudo systemctl start mysqld
@@ -18,8 +17,8 @@ if sudo dnf install -y community-mysql-server; then
     echo "alias conmaria='sudo mysql -u root -p'" >> ~/.bashrc
 else 
     echo "Installation failed. Adding to list..."
-    echo "mysql" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
+    echo "mysql" >> $HOME/Downloads/failed_installs.txt
+    echo "" >> $HOME/Downloads/failed_installs.txt
     echo "Successfully added to list"
 fi
 
@@ -30,29 +29,29 @@ install_packages(){
         echo "$package_name installed correctly!"
     else 
         echo "Installation failed. Adding to list..."
-        echo "$package_name" >> ~/Downloads/failed_installs.txt
-        echo "" >> ~/Downloads/failed_installs.txt
+        echo "$package_name" >> $HOME/Downloads/failed_installs.txt
+        echo "" >> $HOME/Downloads/failed_installs.txt
         echo "Successfully added to list"
     fi
 }
-install_packages() "community_mysql_server"
-install_packages() "nmap"
-###### install_packages() "dbeaver" DOESNT WORK
-install_packages() "code"
-###### install_packages() "postgresql" DOESNT WORK
-install_packages() "gcc"
-install_packages() "gcc-c++"
-install_packages() "nodejs"
-install_packages() "npm"
-install_packages() "pip"
-install_packages() "python3"
-install_packages() "docker"
-install_packages() "kubernetes-cli"
-install_packages() "dotnet"
-install_packages() "java-latest-openjdk-devel"
-install_packages() "postgresql11-server"
-install_packages() "postgresql11"
-install_packages() "heimdal-devel"
+install_packages "community_mysql_server"
+install_packages "nmap"
+###### install_packages "dbeaver" DOESNT WORK
+install_packages "code"
+###### install_packages "postgresql" DOESNT WORK
+install_packages "gcc"
+install_packages "gcc-c++"
+install_packages "nodejs"
+install_packages "npm"
+install_packages "pip"
+install_packages "python3"
+install_packages "docker"
+install_packages "kubernetes-cli"
+install_packages "dotnet"
+install_packages "java-latest-openjdk-devel"
+install_packages "postgresql11-server"
+install_packages "postgresql11"
+install_packages "heimdal-devel"
 
 echo "Making shutdown shortcut"
 echo "alias sdp='sudo shutdown -h now'" >> ~/.bashrc
@@ -63,12 +62,12 @@ echo "#Installing Pentesting/CTF tools..."
 
 ###### NMAP ######
 echo "\n\nInstalling nmap..."
-install_packages() "nmap"
+install_packages "nmap"
 
 ###### GOBUSTER ######
 
 echo "Installing gobuster..."
-install_packages() "gobuster"
+install_packages "gobuster"
 ###### XSSER ######
 
 
@@ -84,7 +83,7 @@ if git clone https://github.com/epsylon/xsser.git ~/xsser; then
     fi
 else
     echo "Installation failed. Adding to list..."
-    echo "https://github.com/epsylon/xsser.git" >> ~/Downloads/failed_installs.txt
+    echo "https://github.com/epsylon/xsser.git" >> $HOME/Downloads/failed_installs.txt
     echo "" >> ~/Downloads/failed_installs.txt
     echo "Successfully added to list"
 fi
@@ -132,10 +131,10 @@ alias openvas-start='sudo systemctl start openvas-scanner && sudo systemctl star
 cd ~/Downloads
 echo "Installing DLLInjector..."
 
-install_packages() "gcc"
-install_packages() "gcc-c++"
-install_packages() "make"
-install_packages() "cmake"
+install_packages "gcc"
+install_packages "gcc-c++"
+install_packages "make"
+install_packages "cmake"
 
 git clone https://github.com/OpenSecurityResearch/dllinjector.git
 cd dllinjector
@@ -154,28 +153,28 @@ if git clone https://github.com/hellman/libformatstr.git ~/libformatstr; then
     sudo make install
 else 
     echo "Installation failed. Adding to list..."
-    echo "https://github.com/hellman/libformatstr.git" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
+    echo "https://github.com/hellman/libformatstr.git" >> $HOME/Downloads/failed_installs.txt
+    echo "" >> $HOME/Downloads/failed_installs.txt
     echo "Successfully added to list"
 fi
 
 ###### JOHN THE RIPPER ######
 echo "Installing John the Ripper"
-install_packages() "john"
+install_packages "john"
 ###### NETCAT ######
 
 echo "Installing netcat..."
-install_packages() "nmcap-ncat"
+install_packages "nmcap-ncat"
 
 ###### TCPDUMP ######
 
 echo "Installing tcpdump..."
-install_packages() "tcpdump"
+install_packages "tcpdump"
 
 ###### OPENSSL ######
 
 echo "Installing openssl..."
-install_packages() "openssl"
+install_packages "openssl"
 
 
 ###### QWASP ZAP ######
@@ -194,7 +193,7 @@ if git clone https://github.com/geohot/qira.git ~/qira; then
     sudo make install
 else 
     echo "Installation failed. Adding to list..."
-    echo "https://github.com/geohot/qira.git" >> ~/Downloads/failed_installs.txt
-    echo "" >> ~/Downloads/failed_installs.txt
+    echo "https://github.com/geohot/qira.git" >> $HOME/Downloads/failed_installs.txt
+    echo "" >> $HOME/Downloads/failed_installs.txt
     echo "Successfully added to list"
 fi
