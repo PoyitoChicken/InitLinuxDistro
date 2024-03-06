@@ -30,7 +30,7 @@ git clone https://github.com/PoyitoChicken/initFedoraSec.git ~/Downloads/install
 ```
 2. Navigate to the folder
 ```
-cd installers
+cd ~/Downloads/installers
 ```
 3. Make it an executable file installer_4(your package manager).sh
 ```
