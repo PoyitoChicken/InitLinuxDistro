@@ -26,7 +26,7 @@ sudo pacman -S git --noconfirm
 ````
 1. Clone the repository  
 ```
-git clone https://github.com/PoyitoChicken/initFedoraSec.git installers
+git clone https://github.com/PoyitoChicken/initFedoraSec.git ~/Downloads/installers
 ```
 2. Navigate to the folder
 ```
