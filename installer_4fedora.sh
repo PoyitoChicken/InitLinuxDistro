@@ -49,8 +49,8 @@ install_packages "docker"
 install_packages "kubernetes-cli"
 install_packages "dotnet"
 install_packages "java-latest-openjdk-devel"
-install_packages "postgresql11-server"
-install_packages "postgresql11"
+# install_packages "postgresql11-server"
+# install_packages "postgresql11"
 install_packages "heimdal-devel"
 
 echo "Making shutdown shortcut"
@@ -164,7 +164,7 @@ install_packages "john"
 ###### NETCAT ######
 
 echo "Installing netcat..."
-install_packages "nmcap-ncat"
+install_packages "nmap-ncat"
 
 ###### TCPDUMP ######
 
