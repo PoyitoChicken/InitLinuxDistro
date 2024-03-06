@@ -113,7 +113,8 @@ sudo ln -sf /opt/metasploit4/msf/msf* /usr/local/bin/
 ###### OPENVAS ######
 cd ~
 echo "Installing OpenVAS"
-sudo dnf install -y https://updates.atomicorp.com/channels/atomic/fedora/$(rpm -E %fedora)/x86_64/RPMS/atomic-release-1.0-21.fc$(rpm -E %fedora).art.noarch.rpm
+# sudo dnf install -y https://updates.atomicorp.com/channels/atomic/fedora/$(rpm -E %fedora)/x86_64/RPMS/atomic-release-1.0-21.fc$(rpm -E %fedora).art.noarch.rpm
+wget -q -O -y - http://www.atomicorp.com/installers/atomic |sh
 sudo dnf install -y openvas
 sudo openvas-setup
 alias openvas-start='sudo systemctl start openvas-scanner && sudo systemctl start openvas-manager && sudo systemctl start openvas-gsa'
