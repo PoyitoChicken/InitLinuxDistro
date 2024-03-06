@@ -1,6 +1,5 @@
 echo "#####****     Installing Programming Dependencies...      ****####"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-touch ~/Downloads/failed_installs.txt
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -9,6 +8,8 @@ echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
 # sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
 ####       MYSQL NEEDS TO BE ENABLED SO NOT CALLED IN FUNCTION
+cd ~/Downloads
+touch ~/Downloads/failed_installs.txt
 if sudo dnf install -y community-mysql-server; then
     echo "mysql installed correctly"
     sudo systemctl start mysqld
