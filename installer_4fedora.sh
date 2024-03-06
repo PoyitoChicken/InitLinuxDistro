@@ -9,7 +9,7 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/F-35-x86_64/pgdg-fedora-repo-latest.noarch.rpm
 sudo dnf update -y
-sudo dnf install -y community-mysql-server dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
+sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
 
 
 echo "Making MariaDB run at start"
@@ -25,10 +25,9 @@ echo "#####****     CYBERSECURITY SUITE      ****####"
 echo "#Installing Pentesting/CTF tools..."
 
 ###### NMAP ######
-
+: '
 echo "Nmap"
-
-curl https://nmap.org/dist/nmap-7.94-1.x86_64.rpm
+curl https://nmap.org/dist/nmap-7.94-1.x86_64.rpm 
 if sudo dnf install -y nmap ~/Downloads/nmap-7.94-1.x86_64.rpm; then
     echo "Installation successful!"
 else 
@@ -37,7 +36,7 @@ else
     echo "" >> ~/Downloads/failed_installs.txt
     echo "Successfully added to list"
 fi
-
+'
 
 ###### GOBUSTER ######
 
@@ -72,6 +71,8 @@ else
 fi
 #######
 ###### METASPLOIT ######
+## Install failed server down
+cd ~/Downloads
 wget http://downloads.metasploit.com/data/releases/framework-latest.tar.bz2
 tar -jxf framework-latest.tar.bz2
 sudo mkdir -p /opt/metasploit4
@@ -92,7 +93,7 @@ sudo ln -sf /opt/metasploit4/msf/msf* /usr/local/bin/
 
 #######
 ###### OPENVAS ######
-
+cd ~
 echo "Installing OpenVAS"
 sudo dnf install -y https://updates.atomicorp.com/channels/atomic/fedora/$(rpm -E %fedora)/x86_64/RPMS/atomic-release-1.0-21.fc$(rpm -E %fedora).art.noarch.rpm
 sudo dnf install -y openvas
@@ -108,7 +109,8 @@ alias openvas-start='sudo systemctl start openvas-scanner && sudo systemctl star
 #######
 
 ###### DLLINJECTOR ######
-
+#### FAILED IDK WHERE
+cd ~/Downloads
 echo "Installing DLLInjector..."
 
 sudo dnf install -y git gcc gcc-c++ make cmake
@@ -124,7 +126,7 @@ cd ~/Downloads
 ###### LIBFORMATSTR ######
 
 if git clone https://github.com/hellman/libformatstr.git ~/libformatstr; then
-    cd libformatstr
+    cd ~/libformatstr
     make
     sudo make install
 else 
@@ -193,7 +195,7 @@ fi
 echo "Installing Qira"
 
 if git clone https://github.com/geohot/qira.git ~/qira; then
-    cd qira
+    cd ~/qira
     make
     sudo make install
 else 
