@@ -135,6 +135,7 @@ else
     echo "john" >> ~/Downloads/failed_installs.txt
     echo "" >> ~/Downloads/failed_installs.txt
     echo "Successfully added to list"
+fi
 ###### NETCAT ######
 
 echo "Installing netcat..."
