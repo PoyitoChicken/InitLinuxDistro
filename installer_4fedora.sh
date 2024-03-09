@@ -89,7 +89,8 @@ else
 fi
 #######
 ###### METASPLOIT ######
-## Install failed server down
+## Install failed server down 
+###         IT WONT WORK IF ITS FIREWALLED 
 cd ~/Downloads
 wget http://downloads.metasploit.com/data/releases/framework-latest.tar.bz2
 tar -jxf framework-latest.tar.bz2
@@ -114,6 +115,7 @@ sudo ln -sf /opt/metasploit4/msf/msf* /usr/local/bin/
 cd ~
 echo "Installing OpenVAS"
 # sudo dnf install -y https://updates.atomicorp.com/channels/atomic/fedora/$(rpm -E %fedora)/x86_64/RPMS/atomic-release-1.0-21.fc$(rpm -E %fedora).art.noarch.rpm
+###                CHECK WHERE THE INSTALLER IS 
 wget -q -O -y - http://www.atomicorp.com/installers/atomic |sh
 sudo dnf install -y openvas
 sudo openvas-setup
@@ -141,6 +143,8 @@ git clone https://github.com/OpenSecurityResearch/dllinjector.git
 cd dllinjector
 mkdir build
 cd build
+
+###            FAILED CREATING THE CMAKE..
 cmake ..
 make
 printf '\nexport PATH="$HOME/dllinjector/build:$PATH"\n' >> ~/.bashrc
@@ -186,6 +190,7 @@ install_packages "openssl"
 
 ###### QIRA ######
 
+###            INSTALLER FAILED IN GETTING THE REPO
 echo "Installing Qira"
 
 if git clone https://github.com/geohot/qira.git ~/qira; then
