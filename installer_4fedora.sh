@@ -5,6 +5,7 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/F-35-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+sudo dnf install -y https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
 echo "#####****     Updating dependencies       ****####"
 sudo dnf update -y
 # sudo dnf install -y community-mysql-server nmap dbeaver code postgresql gcc gcc-c++ nodejs npm python3 git docker kubernetes-cli dotnet java-latest-openjdk-devel postgresql11-server postgresql11 heimdal-devel
@@ -36,9 +37,7 @@ install_packages(){
 }
 install_packages "community_mysql_server"
 install_packages "nmap"
-###### install_packages "dbeaver" DOESNT WORK
 install_packages "code"
-###### install_packages "postgresql" DOESNT WORK
 install_packages "gcc"
 install_packages "gcc-c++"
 install_packages "nodejs"
@@ -49,8 +48,6 @@ install_packages "docker"
 install_packages "kubernetes-cli"
 install_packages "dotnet"
 install_packages "java-latest-openjdk-devel"
-# install_packages "postgresql11-server"
-# install_packages "postgresql11"
 install_packages "heimdal-devel"
 
 echo "Making shutdown shortcut"
