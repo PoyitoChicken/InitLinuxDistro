@@ -1,4 +1,4 @@
-# Init Linux Distros | ALFA VERSION COPY AT YOUR OWN RISK
+# Init Linux Distros
 Install DB and CyberSec dependencies for FedoraSec
 
 ## Process
